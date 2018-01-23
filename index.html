@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="ny.png" />
+    <title>NY Times my links</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+   h1{
+       text-align: center;
+   }
+   ul {
+       width: 50%;
+       margin: auto;
+   }
+    
+</style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <form>
+                <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>NY Times API Project</h1>
+        <ul id="headlines">
+        
+        </ul>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script>
+        function searchNYT(query) {
+            var nytUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q='+query+'&sort=newest&api-key=f1bb266b9dff4541b8d3d390a067ccbe'
+            $.getJSON(nytUrl, function (iLikeCheese) {
+                console.log(iLikeCheese)
+                var docs = iLikeCheese.response.docs;
+                var myLi = ''
+                for (var i = 0; i < docs.length; i++) {
+                    myLi += `<li><a href="${docs[i].web_url}"> ${docs[i].headline.main} </a></li>`;
+                }
+                document.getElementById("headlines").innerHTML = myLi;
+            })
+        }
+        $("form").submit(function (event) {
+            event.preventDefault();
+            var userInput = $("#search").val();
+            $("form")[0].reset();
+            $("input").blur();
+            searchNYT(userInput);
+            alert("I like cheese!")
+        })
+    </script>
+</body>
+        
+
+<!-- "<a href=/"data.response.docs[i].web_url/">" "</a>" -->
