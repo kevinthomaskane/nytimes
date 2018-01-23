@@ -7,24 +7,45 @@
     <title>NY Times my links</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<style>
-   h1{
-       text-align: center;
-   }
-   ul {
-       width: 50%;
-       margin: auto;
-   }
-    
-</style>
+    <style>
+        h1 {
+            text-align: center;
+            margin-top: 20%;
+        }
+
+        ul {
+            width: 50%;
+            margin: auto;
+        }
+
+        nav {
+            width: 50%;
+            margin: 0 auto;
+            
+        }
+
+        #headlines {
+            display: block;
+            margin-top: 2%;
+        }
+
+        .trending-articles {
+            text-align: center;
+            margin-top: 5%;
+        }
+    </style>
 </head>
 
 <body>
-    <nav>
+    <div class="container">
+        <img src="http://usa.specialisterne.com/files/2012/11/NYTimes-banner.jpg">
+        
+    </div>
+    <nav class="white">
         <div class="nav-wrapper">
             <form>
                 <div class="input-field">
-                    <input id="search" type="search" required>
+                    <input id="search" type="search" placeholder="search for a topic" required>
                     <label class="label-icon" for="search">
                         <i class="material-icons">search</i>
                     </label>
@@ -33,12 +54,11 @@
             </form>
         </div>
     </nav>
-    <div class="container">
-        <h1>NY Times API Project</h1>
-        <ul id="headlines">
-        
+    <h5 class="trending-articles"></h5>
+    <ul id="headlines">
+            
         </ul>
-    </div>
+   
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -46,16 +66,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     <script>
+
+$(function () {
+    $(".trending-articles").hide();
+    
         function searchNYT(query) {
-            var nytUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q='+query+'&sort=newest&api-key=f1bb266b9dff4541b8d3d390a067ccbe'
-            $.getJSON(nytUrl, function (iLikeCheese) {
-                console.log(iLikeCheese)
-                var docs = iLikeCheese.response.docs;
+            var nytUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + query + '&sort=newest&api-key=f1bb266b9dff4541b8d3d390a067ccbe'
+            $.getJSON(nytUrl, function (data) {
+                console.log(data)
+                var docs = data.response.docs;
                 var myLi = ''
                 for (var i = 0; i < docs.length; i++) {
                     myLi += `<li><a href="${docs[i].web_url}"> ${docs[i].headline.main} </a></li>`;
                 }
                 document.getElementById("headlines").innerHTML = myLi;
+                
+            
+
             })
         }
         $("form").submit(function (event) {
@@ -64,10 +91,12 @@
             $("form")[0].reset();
             $("input").blur();
             searchNYT(userInput);
-            alert("I like cheese!")
+            $(".trending-articles").html("Today's Trending Articles").show();
         })
+
+})
     </script>
 </body>
-        
+
 
 <!-- "<a href=/"data.response.docs[i].web_url/">" "</a>" -->
