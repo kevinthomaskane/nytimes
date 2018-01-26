@@ -3,25 +3,34 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="ny.png" />
-    <title>NY Times my links</title>
+    <title>NY Times</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="icon" type="image/png" href="https://d30y9cdsu7xlg0.cloudfront.net/png/12734-200.png">
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+    <script src="https://use.fontawesome.com/e3eb1e0702.js"></script>
     <style>
-        h1 {
-            text-align: center;
-            margin-top: 20%;
+        h2 {
+            font-family: 'Vollkorn SC', serif;
         }
+
+        h4 {
+            font-family: 'Vollkorn SC', serif;
+        }
+
 
         ul {
             width: 50%;
             margin: auto;
         }
 
+
+
         nav {
             width: 50%;
             margin: 0 auto;
-            
+
         }
 
         #headlines {
@@ -33,32 +42,94 @@
             text-align: center;
             margin-top: 5%;
         }
+
+        body {
+            background-image: url("http://hdblackwallpaper.com/wallpaper/2015/07/amazing-black-and-white-wallpapers-34-background.jpg");
+        }
+
+        .center-piece {
+            text-align: center;
+            margin-top: 15%;
+        }
+
+        .collapsible {
+            
+            margin: 0 auto;
+            font-family: 'Noto Serif', serif;
+            margin-bottom: 1%;
+
+        }
+
+        .on-load {
+            margin-top: 5%;
+        }
+
+        .collapsible-header {
+           
+            background-color: rgba(0, 0, 0, 0.2);
+            
+        }
+
+        .black-link {
+            color: black !important;
+        }
+
+        #search:focus {
+            border-bottom: 1px solid rgb(255, 255, 255);
+            -webkit-box-shadow: 0 1px 0 0 black;
+            -moz-box-shadow: 0 1px 0 0 black;
+            box-shadow: 0 1px 0 0 rgb(255, 255, 255);
+        }
+
+        button{
+            margin-left: 47%;
+            margin-right: 47%;
+        }
+        
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <img src="http://usa.specialisterne.com/files/2012/11/NYTimes-banner.jpg">
+
+    <div class="center-piece">
+
+        <h2>The New York Times</h2>
+        <nav class="white">
+            <div class="nav-wrapper">
+                <form>
+                    <div class="input-field">
+                        <input id="search" type="search" placeholder="search for a topic" required>
+
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <div id="article-results">
+        <h4 class="trending-articles"></h4>
+    
+        <ul class="collapsible popout" data-collapsible="accordion">
+        </ul>
+        <button><i class="material-icons" onClick="window.location.reload()">arrow_back</i></button>
         
     </div>
-    <nav class="white">
-        <div class="nav-wrapper">
-            <form>
-                <div class="input-field">
-                    <input id="search" type="search" placeholder="search for a topic" required>
-                    <label class="label-icon" for="search">
-                        <i class="material-icons">search</i>
-                    </label>
-                    <i class="material-icons">close</i>
-                </div>
-            </form>
-        </div>
-    </nav>
-    <h5 class="trending-articles"></h5>
-    <ul id="headlines">
-            
-        </ul>
    
+    <footer class="page-footer black" style="position:fixed;bottom:0;left:0;width:100%;">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Want to get in touch?</h5>
+                    <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                    <a class="white-text" href="https://www.linkedin.com/in/kevinthomaskane/">LinkedIn</a>
+                    <br>
+                    <i class="fa fa-envelope" aria-hidden="true"></i> kevinthomaskane@gmail.com
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -67,34 +138,49 @@
 
     <script>
 
-$(function () {
-    $(".trending-articles").hide();
-    
-        function searchNYT(query) {
-            var nytUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + query + '&sort=newest&api-key=f1bb266b9dff4541b8d3d390a067ccbe'
-            $.getJSON(nytUrl, function (data) {
-                console.log(data)
-                var docs = data.response.docs;
-                var myLi = ''
-                for (var i = 0; i < docs.length; i++) {
-                    myLi += `<li><a href="${docs[i].web_url}"> ${docs[i].headline.main} </a></li>`;
-                }
-                document.getElementById("headlines").innerHTML = myLi;
-                
-            
+        $(document).ready(function () {
+
+
+            $("#article-results").hide();
+
+            function searchNYT(query) {
+                var nytUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + query + '&sort=newest&api-key=f1bb266b9dff4541b8d3d390a067ccbe'
+                $.getJSON(nytUrl, function (data) {
+                    console.log(data)
+                    // $(".collapsible").html("");
+                    for (var i = 0; i < 5; i++) {
+                        if (data.response.docs[i].headline) {
+
+                            $(".collapsible").append(`  
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">chrome_reader_mode</i><a class="black-link" href="${data.response.docs[i].web_url}">${data.response.docs[i].headline.main}</a></div>
+                                <div class="collapsible-body">${data.response.docs[i].byline.original}</div>
+                            </li>          
+                            `);
+
+                        }
+
+                    }
+
+
+                });
+            }
+            $('.collapsible').collapsible();
+            $("form").submit(function (event) {
+                event.preventDefault();
+                var userInput = $("#search").val();
+                $("form")[0].reset();
+                $("input").blur();
+                searchNYT(userInput);
+                $(".trending-articles").html("Today's Trending Articles").show();
+                $("#article-results").show();
+                $(".center-piece").hide();
+                $("#article-results").addClass("on-load");
 
             })
-        }
-        $("form").submit(function (event) {
-            event.preventDefault();
-            var userInput = $("#search").val();
-            $("form")[0].reset();
-            $("input").blur();
-            searchNYT(userInput);
-            $(".trending-articles").html("Today's Trending Articles").show();
-        })
 
-})
+        });
+
     </script>
 </body>
 
