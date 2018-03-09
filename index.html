@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-        
+
 <head>
     <meta charset="UTF-8">
     <title>NY Times</title>
@@ -9,87 +9,10 @@
     <link href="https://fonts.googleapis.com/css?family=Vollkorn+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
-    <link rel="icon" 
-      type="image/png" 
-      href="https://superrepo.org/static/images/icons/original/xplugin.video.nytimes.png.pagespeed.ic.XOPQITkLio.png">
+    <link rel="icon" type="image/png" href="https://superrepo.org/static/images/icons/original/xplugin.video.nytimes.png.pagespeed.ic.XOPQITkLio.png">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <script src="https://use.fontawesome.com/e3eb1e0702.js"></script>
-    <style>
-        h2 {
-            font-family: 'Vollkorn SC', serif;
-        }
 
-        h4 {
-            font-family: 'Vollkorn SC', serif;
-        }
-
-
-        ul {
-            width: 50%;
-            margin: auto;
-        }
-
-
-
-        nav {
-            width: 50%;
-            margin: 0 auto;
-
-        }
-
-        #headlines {
-            display: block;
-            margin-top: 2%;
-        }
-
-        .trending-articles {
-            text-align: center;
-            margin-top: 5%;
-        }
-
-        body {
-            background-image: url("background.jpg");
-        }
-
-        .center-piece {
-            text-align: center;
-            margin-top: 15%;
-        }
-
-        .collapsible {
-            
-            margin: 0 auto;
-            font-family: 'Noto Serif', serif;
-            margin-bottom: 1%;
-
-        }
-
-        .on-load {
-            margin-top: 5%;
-        }
-
-        .collapsible-header {
-           
-            background-color: rgba(0, 0, 0, 0.2);
-            
-        }
-
-        .black-link {
-            color: black !important;
-        }
-
-        #search:focus {
-            border-bottom: 1px solid rgb(255, 255, 255);
-            -webkit-box-shadow: 0 1px 0 0 black;
-            -moz-box-shadow: 0 1px 0 0 black;
-            box-shadow: 0 1px 0 0 rgb(255, 255, 255);
-        }
-
-        button{
-            margin-left: 47%;
-            margin-right: 47%;
-        }
-        
-    </style>
 </head>
 
 <body>
@@ -110,13 +33,15 @@
     </div>
     <div id="article-results">
         <h4 class="trending-articles"></h4>
-    
+
         <ul class="collapsible popout" data-collapsible="accordion">
         </ul>
-        <button><i class="material-icons" onClick="window.location.reload()">arrow_back</i></button>
-        
+        <button>
+            <i class="material-icons" onClick="window.location.reload()">arrow_back</i>
+        </button>
+
     </div>
-   
+
     <footer class="page-footer black" style="position:fixed;bottom:0;left:0;width:100%;">
         <div class="container">
             <div class="row">
@@ -134,7 +59,7 @@
 
 
 
-    <!-- Scripts -->
+  
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -188,4 +113,3 @@
 </body>
 
 
-<!-- "<a href=/"data.response.docs[i].web_url/">" "</a>" -->

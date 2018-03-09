@@ -1,0 +1,74 @@
+h2 {
+    font-family: 'Vollkorn SC', serif;
+}
+
+h4 {
+    font-family: 'Vollkorn SC', serif;
+}
+
+
+ul {
+    width: 50%;
+    margin: auto;
+}
+
+
+
+nav {
+    width: 50%;
+    margin: 0 auto;
+
+}
+
+#headlines {
+    display: block;
+    margin-top: 2%;
+}
+
+.trending-articles {
+    text-align: center;
+    margin-top: 5%;
+}
+
+body {
+    background-image: url("background.jpg");
+}
+
+.center-piece {
+    text-align: center;
+    margin-top: 15%;
+}
+
+.collapsible {
+    
+    margin: 0 auto;
+    font-family: 'Noto Serif', serif;
+    margin-bottom: 1%;
+
+}
+
+.on-load {
+    margin-top: 5%;
+}
+
+.collapsible-header {
+   
+    background-color: rgba(0, 0, 0, 0.2);
+    
+}
+
+.black-link {
+    color: black !important;
+}
+
+#search:focus {
+    border-bottom: 1px solid rgb(255, 255, 255);
+    -webkit-box-shadow: 0 1px 0 0 black;
+    -moz-box-shadow: 0 1px 0 0 black;
+    box-shadow: 0 1px 0 0 rgb(255, 255, 255);
+}
+
+button{
+    margin-left: 47%;
+    margin-right: 47%;
+}
